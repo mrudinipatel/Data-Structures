@@ -1,8 +1,6 @@
 #include "get_bits.h"
 
-unsigned char get_bits8( unsigned char from, 
-                        unsigned char to, 
-			void *data )
+unsigned char get_bits8 (unsigned char from, unsigned char to, void *data)
 /* This function returns the numeric value of a series of bits in memory.
  * The memory location is given by "data", and the bits returned are in
  * most-significant to least-significant order starting at "from" and going
@@ -30,9 +28,7 @@ unsigned char get_bits8( unsigned char from,
   return val;		// return a value equal to the selected bits
 }
 
-unsigned short get_bits16( unsigned char from,
-                            unsigned char to,
-                            void *data )
+unsigned short get_bits16 (unsigned char from, unsigned char to, void *data)
 /* This function returns the numeric value of a series of bits in memory.
  * The memory location is given by "data", and the bits returned are in
  * most-significant to least-significant order starting at "from" and going
@@ -50,9 +46,7 @@ unsigned short get_bits16( unsigned char from,
   return val;		// return a value equal to the selected bits
 }
 
-unsigned int get_bits32( unsigned char from,
-                            unsigned char to,
-                            void *data )
+unsigned int get_bits32 (unsigned char from, unsigned char to, void *data)
 /* This function returns the numeric value of a series of bits in memory.
  * The memory location is given by "data", and the bits returned are in
  * most-significant to least-significant order starting at "from" and going
@@ -70,9 +64,7 @@ unsigned int get_bits32( unsigned char from,
   return val;		// return a value equal to the selected bits
 }
 
-unsigned long get_bits64( unsigned char from,
-                            unsigned char to,
-                            void *data )
+unsigned long get_bits64 (unsigned char from, unsigned char to, void *data)
 /* This function returns the numeric value of a series of bits in memory.
  * The memory location is given by "data", and the bits returned are in
  * most-significant to least-significant order starting at "from" and going
