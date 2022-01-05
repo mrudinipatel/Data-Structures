@@ -7,3 +7,4 @@ tree.o: tree.c tree.h memsys.h
 clean:
 	rm *.o all
 
+
