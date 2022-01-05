@@ -6,3 +6,5 @@ a1.o: a1.c
 
 clean:
 	rm *.o a1
+	
+	
