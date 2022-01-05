@@ -146,3 +146,4 @@ short bits2short(char *bits){
 
   return total;
 }
+
