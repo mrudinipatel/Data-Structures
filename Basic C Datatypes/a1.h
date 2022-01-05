@@ -17,3 +17,5 @@ void bits2str( int bitno, unsigned char *bits, char *bitstr );
 void ushort2bits( unsigned short s, unsigned char bits[16] );
 void short2bits(short s, unsigned char bits[16] );
 short bits2short( char *bits );
+
+
