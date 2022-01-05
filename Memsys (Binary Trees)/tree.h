@@ -41,5 +41,3 @@ int searchItem(struct memsys *memsys, struct Tree *tree, int (*compar)(const voi
 
 #endif //TREE
 
-
-
