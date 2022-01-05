@@ -141,5 +141,3 @@ void join_graph (struct node *nim_hash, int hash, int board_size, int *start_boa
 
 
 
-
-
