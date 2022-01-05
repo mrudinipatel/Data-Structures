@@ -12,76 +12,65 @@ int set2idx(char * setFile);
 char * get_string(char * filename, int num);
 
 int main(int argc, char *argv[]){
-    long indexOfBuilding = 0; // holds index of building 
-    long indexOfRoom = 0; // holds index of room
-    char loop; // for for loop
-    int sub = 0; // holds index values for subject 
-    int courseNum = 0; // holds index values of courseno
-    int days = 0; // holds index values for days
-    int start = 0; // holds index values for start time
-    int end = 0; // holds index values for end time
-    char nameOfFile[BUFFER]; // for the intersection file
-    int duplicates = -1; // used to find duplicates
-    char buildingSetFile[BUFFER]; // for the set file for the building 
-    char roomSetFile[BUFFER]; // for the set file for the room
+    long indexOfBuilding = 0, indexOfRoom = 0;
+    char loop;
+    int sub = 0, courseNum = 0;
+    int days = 0, start = 0, end = 0;
+    char nameOfFile[BUFFER];
+    int duplicates = -1;
+    char buildingSetFile[BUFFER];
+    char roomSetFile[BUFFER];
 
-    if(argc != 3){ // if there arent three command line arguments exit the program
+    if(argc != 3){ // there must be 3 command line arguments (otherwise exit program)
         exit(-1);
     }
   
-    //create proper set file from command line inputs 
     strcpy(nameOfFile, argv[1]);
     strcat(nameOfFile, argv[2]);
     strcat(nameOfFile, ".set");
 
-    // for set file for building 
     strcpy(buildingSetFile, "building");
     strcat(buildingSetFile, ".set");
 
-    //for setFile for room
     strcpy(roomSetFile, "room");
     strcat(roomSetFile, ".set");
 
-    indexOfBuilding = getIndex("building", argv[1]); // get index of building 
-    indexOfRoom = getIndex("room", argv[2]); // get index of room 
+    indexOfBuilding = getIndex("building", argv[1]);
+    indexOfRoom = getIndex("room", argv[2]);
 
-    query("code", -1, "building", indexOfBuilding, buildingSetFile); // create building.set file 
-    query("code", -1, "room", indexOfRoom, roomSetFile); // create room.set file 
+    query("code", -1, "building", indexOfBuilding, buildingSetFile);
+    query("code", -1, "room", indexOfRoom, roomSetFile);
 
 
-    intersection(buildingSetFile,roomSetFile, nameOfFile); // instersection between building and room.set file will bee stored in alex200.set 
-  
-    FILE *fp = fopen(nameOfFile, "rb" ); // open set file
-    
-    for (int i=0; fread(&loop,1,1,fp)==1; i++){ // display subject, courseno, days, from, and to values for the building and room number 
+    intersection(buildingSetFile,roomSetFile, nameOfFile);
+	
+    FILE *fp = fopen(nameOfFile, "rb");
+	
+    for (int i = 0; fread(&loop,1,1,fp) == 1; i++){
         if (loop){
-            query("code", i, "subject", -1, "subject.set"); // creates set file for subject 
-            sub = set2idx("subject.set"); // gets index for subject 
+            query("code", i, "subject", -1, "subject.set");
+            sub = set2idx("subject.set");
         
-            query("code", i, "courseno", -1, "courseno.set"); // create set file for courseno
-            courseNum = set2idx("courseno.set"); // gets index for courseno
+            query("code", i, "courseno", -1, "courseno.set");
+            courseNum = set2idx("courseno.set"); 
             
-	    if(duplicates == courseNum){ // if there is a duplicate do not print 
+	    if(duplicates == courseNum){ // cannot print duplicates
                 continue; 
             }
-
-            duplicates = courseNum; // will hold duplicate course code
+	    duplicates = courseNum;
             
-            query("code", i, "days", -1, "days.set"); // create set file for days
-            days = set2idx("days.set"); // gets index for days
-        
-            query("code",i, "to", -1, "to.set"); // create set file for the ending time
-            end = set2idx("to.set"); // gets index for the ending time
-            
-            query("code", i, "from", -1, "from.set"); // create set file for the start time
-            start = set2idx("from.set");// gets index for the start time
+            query("code", i, "days", -1, "days.set");
+            days = set2idx("days.set");
+            query("code",i, "to", -1, "to.set");
+            end = set2idx("to.set");
+            query("code", i, "from", -1, "from.set");
+            start = set2idx("from.set");
 
-            // prints strings of the following attributes
             printf("%s %s %s %s - %s\n",get_string("subject", sub), get_string("courseno", courseNum), get_string("days", days), get_string("from", start), get_string("to", end));
         }
     }
 
-    fclose(fp);// close file 
+    fclose(fp);
 }
 
 int getIndex(char *buildingDesig, char *roomNum){
@@ -92,26 +81,20 @@ int getIndex(char *buildingDesig, char *roomNum){
     char *value;
     long hash_table[ HASHSIZE ];
 
-    // identify text file name
     strcpy(idxname, buildingDesig);
     strcat(idxname, ".idx" );
     strcpy(txtname, buildingDesig);
     strcat(txtname, ".txt" );
 
-    // basefile for hashing
     basename = buildingDesig;
 
-    // target value
     value = roomNum;
 
-    // load hashtable from file into memory
     get_hashtable(basename, hash_table );
 
-    // open text file
     FILE *idxfile = fopen(idxname, "r" );
     FILE *txtfile = fopen(txtname, "r" );
 
-    // print result of hash_lookup
     long lookupHash =  hash_lookup(value, hash_table, idxfile, txtfile );
     fclose(idxfile);
     fclose(txtfile);
@@ -245,6 +228,5 @@ char * get_string(char * filename, int num){
     contents[strlen(contents) - 1] = '\0';
     return contents;
 }
-
 
 
