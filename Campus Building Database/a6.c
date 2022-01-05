@@ -54,31 +54,31 @@ int main(int argc, char *argv[]){
     FILE *fp = fopen(nameOfFile, "rb" ); // open set file
     
     for (int i=0; fread(&loop,1,1,fp)==1; i++){ // display subject, courseno, days, from, and to values for the building and room number 
-	   if (loop){
-              query("code", i, "subject", -1, "subject.set"); // creates set file for subject 
-              sub = set2idx("subject.set"); // gets index for subject 
+        if (loop){
+            query("code", i, "subject", -1, "subject.set"); // creates set file for subject 
+            sub = set2idx("subject.set"); // gets index for subject 
         
-              query("code", i, "courseno", -1, "courseno.set"); // create set file for courseno
-              courseNum = set2idx("courseno.set"); // gets index for courseno
+            query("code", i, "courseno", -1, "courseno.set"); // create set file for courseno
+            courseNum = set2idx("courseno.set"); // gets index for courseno
             
-	      if(duplicates == courseNum){ // if there is a duplicate do not print 
-                  continue; 
-              }
+	    if(duplicates == courseNum){ // if there is a duplicate do not print 
+                continue; 
+            }
 
-              duplicates = courseNum; // will hold duplicate course code
+            duplicates = courseNum; // will hold duplicate course code
             
-              query("code", i, "days", -1, "days.set"); // create set file for days
-              days = set2idx("days.set"); // gets index for days
+            query("code", i, "days", -1, "days.set"); // create set file for days
+            days = set2idx("days.set"); // gets index for days
         
-              query("code",i, "to", -1, "to.set"); // create set file for the ending time
-              end = set2idx("to.set"); // gets index for the ending time
+            query("code",i, "to", -1, "to.set"); // create set file for the ending time
+            end = set2idx("to.set"); // gets index for the ending time
             
-              query("code", i, "from", -1, "from.set"); // create set file for the start time
-              start = set2idx("from.set");// gets index for the start time
+            query("code", i, "from", -1, "from.set"); // create set file for the start time
+            start = set2idx("from.set");// gets index for the start time
 
-              // prints strings of the following attributes
-              printf("%s %s %s %s - %s\n",get_string("subject", sub), get_string("courseno", courseNum), get_string("days", days), get_string("from", start), get_string("to", end));
-          }
+            // prints strings of the following attributes
+            printf("%s %s %s %s - %s\n",get_string("subject", sub), get_string("courseno", courseNum), get_string("days", days), get_string("from", start), get_string("to", end));
+        }
     }
 
     fclose(fp);// close file 
