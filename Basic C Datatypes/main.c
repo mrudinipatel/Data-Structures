@@ -4,6 +4,8 @@
 #include "get_bits.h"
 #include "a1.h"
 
+//main file for testing purposes.
+
 int main(int argc, char **argv) {
   //Checksum function
 
@@ -91,3 +93,5 @@ int main(int argc, char **argv) {
 
   return 0;
 }
+
+
