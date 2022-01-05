@@ -5,8 +5,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-
-
 // function that compares records base (only) on first name
 int comp( const void *ptr1, const void *ptr2 )
 {
@@ -17,7 +15,6 @@ int comp( const void *ptr1, const void *ptr2 )
 
   return *int1 - *int2;
 }
-
 
 int main( int argc, char **argv )
 {
