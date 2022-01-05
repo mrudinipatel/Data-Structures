@@ -9,8 +9,6 @@
 #define    CAPACITY    100    // total capacity of the array
 #define NEL         20    // number of elements of the series to include
 
-
-
 int main( int argc, char **argv )
 {
   int i;
