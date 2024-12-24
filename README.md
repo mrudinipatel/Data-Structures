@@ -1,4 +1,4 @@
-# Data-Structures-CIS-2520-
+# Data-Structures 👩🏻‍💻
 
 This repository has folders containing assignments from the course CIS-2520 (Data Structures) taught by Professor Stefan Kremer at the University of Guelph in the Fall 2021 semester.
 
